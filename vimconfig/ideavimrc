@@ -1,0 +1,5 @@
+set clipboard+=unnamed
+set relativenumber number
+set hlsearch
+set incsearch
+

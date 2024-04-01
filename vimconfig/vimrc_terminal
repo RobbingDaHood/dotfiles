@@ -1,0 +1,21 @@
+set nocompatible
+set hidden
+set confirm
+set nocp
+filetype plugin on
+set relativenumber number
+set undodir=~/.vim/undo_dir
+set undofile
+set clipboard=unnamedplus,unnamed
+set hlsearch
+set incsearch
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+set spell spelllang=en_us
+set nospell
+
+call plug#begin() 
+
+Plug 'https://github.com/md-img-paste-devs/md-img-paste.vim'  "Copy image from clipboard (in case of .md file), save it to disk and link it
+Plug 'https://github.com/tpope/vim-eunuch' "Got it primarily for its Move
+call plug#end()
+
