@@ -6,9 +6,15 @@
   home.username = "robbingdahood";
   home.homeDirectory = "/home/robbingdahood";
 
+  home.sessionVariables = {
+    BROWSER = "brave";
+    TERMINAL = "alacritty";
+    VISUAL = "vim";
+    EDITOR = "vim";
+  };
+
   home.file.".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/vimconfig/";
 
-  # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
     userName = "RobbingDaHood";
@@ -36,24 +42,16 @@
     ];
   };
 
-  # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty = {
     enable = true;
   };
   home.file.".alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/alacritty/alacritty.toml";
 
   programs.tmux = {
-    # Need to read this: https://haseebmajid.dev/posts/2023-07-10-setting-up-tmux-with-nix-home-manager/
     enable = true;
-    # TODO VIM hotkeys: https://blog.sanctum.geek.nz/vi-mode-in-tmux/
-  };
-
-  # Environment
-  home.sessionVariables = {
-    BROWSER = "brave";
-    TERMINAL = "alacritty";
-    VISUAL = "vim";
-    EDITOR = "vim";
+    extraConfig = ''
+      source-file ${config.home.homeDirectory}/Projects/dotfiles/tmux/tmux.conf
+    '';
   };
 
   programs.ranger = {
