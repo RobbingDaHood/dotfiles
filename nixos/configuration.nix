@@ -6,7 +6,6 @@
 
 {
 
-  # TODO: Expand stored lines in terminal, so i can see further back
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -74,10 +73,6 @@
               switch-applications = ["<Super>Tab"];
               switch-applications-backward = ["<Shift><Super>Tab"];
             };
-
-           # "org/gnome/settings-daemon/plugins/media-keys" = {
-           #   terminal = ["<Alt><Ctrl>t"];
-           # };
 
             "org/gnome/desktop/default-applications/terminal" = {
               exec = "alacritty";

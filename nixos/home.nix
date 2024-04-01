@@ -49,6 +49,7 @@
 
   programs.tmux = {
     enable = true;
+    # I could not use the home manager symlink trick to enable tmux config, so had to do it this way. 
     extraConfig = ''
       source-file ${config.home.homeDirectory}/Projects/dotfiles/tmux/tmux.conf
     '';
