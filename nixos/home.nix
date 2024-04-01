@@ -6,6 +6,8 @@
   home.username = "robbingdahood";
   home.homeDirectory = "/home/robbingdahood";
 
+  home.file.".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/vimconfig/";
+
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
@@ -37,12 +39,8 @@
   # alacritty - a cross-platform, GPU-accelerated terminal emulator
   programs.alacritty = {
     enable = true;
-    # custom settings
-    # TODO Get git dotfiles checkout and setup symbolik link (Also for vim) 
-    # settings = {
-    #   general.import =  builtins.readFile ../alacritty/alacritty.toml;
-    # };
   };
+  home.file.".alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/alacritty/alacritty.toml";
 
   programs.tmux = {
     # Need to read this: https://haseebmajid.dev/posts/2023-07-10-setting-up-tmux-with-nix-home-manager/
@@ -63,7 +61,6 @@
   };
 
   # TODO: Add ranger and use it as file explorere everywhere: Also browser downloads etc. Then get rid of the default file explorer. 
-  # TODO: Use dot-files. Try setting up vimrc through home manager.
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
