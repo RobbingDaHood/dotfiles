@@ -152,6 +152,7 @@
         # https://nixos.wiki/wiki/Fish
         fish # hos to be defined here because setting it as default shell requires root access: https://www.reddit.com/r/NixOS/comments/z16mt8/comment/ix9r4b2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
         steam-run # Configurations for the steam client.
+        cataclysm-dda
   ];
 
 
