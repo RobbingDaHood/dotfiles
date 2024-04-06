@@ -46,6 +46,10 @@
     enable = true;
   };
   home.file.".alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Projects/dotfiles/alacritty/alacritty.toml";
+  home.file."/.config/alacritty/themes".source = builtins.fetchGit {
+    url = "https://github.com/alacritty/alacritty-theme";
+    rev = "bd009e1f85d2ff35a9ff9b24808d2927e18a47e6";
+  };
 
   programs.tmux = {
     enable = true;
