@@ -185,6 +185,9 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
+  # Still have to open configs and enable "gnome shell extention", "sync the daemon" and picture support: But else it works out of the box. 
+  programs.gpaste.enable = true;
+
   # Fixing bluetooth dualsense issue https://www.reddit.com/r/NixOS/comments/1272726/comment/jecgbxp/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
   # hardware.enableAllFirmware = true;
   # hardware.bluetooth.enable = true;
