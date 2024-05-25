@@ -6,12 +6,6 @@
 
 {
 
-  imports =
-    [ # Include the results of the hardware scan.
-     ./hardware-configuration.nix
-     ./nvidia-setup.nix
-    ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -190,6 +184,33 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+
+  # Fixing bluetooth dualsense issue https://www.reddit.com/r/NixOS/comments/1272726/comment/jecgbxp/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+  # hardware.enableAllFirmware = true;
+  # hardware.bluetooth.enable = true;
+  # hardware.bluetooth.settings = { General = { Experimental = true; }; } ;
+  # hardware.bluetooth.package = pkgs.bluez5-experimental;
+  # services.blueman.enable = true;
+
+  # https://www.reddit.com/r/NixOS/comments/1cwmq8h/comment/l4wzths/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+  # hardware.bluetooth = {
+  #   enable = true;
+  #   settings = {
+  #     General = {
+  #       Enable = "Source,Sink,Media,Socket";
+  #       AutoEnable = true;
+  #       ControllerMode = "bredr";
+  #       Experimental = true;
+  #       UserspaceHID=true;
+  #     };
+  #   };
+  # };
+  # services.blueman.enable = true;
+
+
+
+  # DO NOT ENABLE THIS: It broke steam ui, maybe it will be fixed later. 
+  # hardware.enableAllFirmware = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
