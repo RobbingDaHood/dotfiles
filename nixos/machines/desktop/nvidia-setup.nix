@@ -5,10 +5,20 @@
   # https://nixos.wiki/wiki/Nvidia
 
   # Enable OpenGL
+  # Most of it is gotten from here: https://nixos.wiki/wiki/Accelerated_Video_Playback
+  # I experienced issues in brave browser, with stuttering. 
   hardware.opengl = {
     enable = true;
     driSupport = true;
-    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
+    ];   driSupport32Bit = true;
+  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
 
   # Load nvidia driver for Xorg and Wayland

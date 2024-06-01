@@ -148,9 +148,12 @@
         fish # hos to be defined here because setting it as default shell requires root access: https://www.reddit.com/r/NixOS/comments/z16mt8/comment/ix9r4b2/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
         steam-run # Configurations for the steam client.
         # As a fix to seeing streaming content like netflix: https://help.netflix.com/da/node/41127
+        # It were also important to enabled watching protected content, but it were enabled by default. 
         (chromium.override { enableWideVine = true; })
   ];
 
+  # Chromium native wayland support: https://nixos.wiki/wiki/Wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.fish.enable = true;
   users.extraUsers.robbingdahood = {
