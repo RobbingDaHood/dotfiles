@@ -150,6 +150,7 @@
         # As a fix to seeing streaming content like netflix: https://help.netflix.com/da/node/41127
         # It were also important to enabled watching protected content, but it were enabled by default. 
         (chromium.override { enableWideVine = true; })
+        tintin
   ];
 
   # Chromium native wayland support: https://nixos.wiki/wiki/Wayland
