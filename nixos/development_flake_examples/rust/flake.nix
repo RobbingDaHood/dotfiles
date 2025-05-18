@@ -1,4 +1,4 @@
-# Use the following command to start up: nix develop
+# Use the following command to start up: nix develop (Only works if the falke.nix is comitted to repo of project)
 # Remember to start idea from that shell to have all default values. 
 # By this command: tmux new-session -d "idea-ultimate"
 # Cant start multiple IDEAS in parallel yet: https://stackoverflow.com/questions/5889413/start-two-instances-of-intellij-ide
