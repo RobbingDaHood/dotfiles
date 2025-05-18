@@ -48,6 +48,7 @@
     xkb.variant = "";
     # Enable the GNOME Desktop Environment.
     displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = false;
     desktopManager.gnome = {
       enable = true;
     };
@@ -191,15 +192,20 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
+  hardware.enableAllFirmware = true;
+
   # Still have to open configs and enable "gnome shell extention", "sync the daemon" and picture support: But else it works out of the box. 
   programs.gpaste.enable = true;
 
   # https://nixos.wiki/wiki/Gamemode
   programs.gamemode.enable = true;
 
+  # https://nixos.wiki/wiki/Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+
   # Fixing bluetooth dualsense issue https://www.reddit.com/r/NixOS/comments/1272726/comment/jecgbxp/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-  # hardware.enableAllFirmware = true;
-  # hardware.bluetooth.enable = true;
   # hardware.bluetooth.settings = { General = { Experimental = true; }; } ;
   # hardware.bluetooth.package = pkgs.bluez5-experimental;
   # services.blueman.enable = true;
@@ -207,6 +213,7 @@
   # https://www.reddit.com/r/NixOS/comments/1cwmq8h/comment/l4wzths/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
   # hardware.bluetooth = {
   #   enable = true;
+  #   powerOnBoot = true;
   #   settings = {
   #     General = {
   #       Enable = "Source,Sink,Media,Socket";
@@ -218,11 +225,6 @@
   #   };
   # };
   # services.blueman.enable = true;
-
-
-
-  # DO NOT ENABLE THIS: It broke steam ui, maybe it will be fixed later. 
-  # hardware.enableAllFirmware = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
