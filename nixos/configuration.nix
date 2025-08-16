@@ -38,6 +38,15 @@
     LC_TIME = "da_DK.UTF-8";
   };
 
+  fonts = {
+    enableDefaultFonts = true;
+    packages = with pkgs; [
+      nerdfonts
+      # or install specific fonts:
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    ];
+  };
+  
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -152,7 +161,16 @@
         # It were also important to enabled watching protected content, but it were enabled by default. 
         (chromium.override { enableWideVine = true; })
         tintin
+        nushell
   ];
+  
+  # Stream gaming from machine
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   # Chromium native wayland support: https://nixos.wiki/wiki/Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -184,6 +202,7 @@
     pkgs.gnome-connections
     pkgs.gnome-console
     pkgs.xterm
+    pkgs.lazygit
   ];
     
   programs.steam = {
