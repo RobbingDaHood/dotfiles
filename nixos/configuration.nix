@@ -39,28 +39,26 @@
   };
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     packages = with pkgs; [
       nerdfonts
       # or install specific fonts:
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      pkgs.nerd-fonts._0xproto
+      pkgs.nerd-fonts.droid-sans-mono
     ];
   };
   
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-
   # Configure keymap in X11
   services.xserver = {
+    enable = true;
     xkb.layout = "dk";
     xkb.variant = "";
-    # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = false;
-    desktopManager.gnome = {
-      enable = true;
-    };
+  };
+  # Enable the GNOME Desktop Environment.
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = false;
+  services.desktopManager.gnome = {
+    enable = true;
   };
     
   programs = {
@@ -107,8 +105,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -134,8 +131,8 @@
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "robbingdahood";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "robbingdahood";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -165,12 +162,12 @@
   ];
   
   # Stream gaming from machine
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
+  # services.sunshine = {
+  #   enable = true;
+  #   autoStart = true;
+  #   capSysAdmin = true;
+  #   openFirewall = true;
+  # };
 
   # Chromium native wayland support: https://nixos.wiki/wiki/Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -187,17 +184,17 @@
     pkgs.epiphany
     pkgs.evince
     pkgs.yelp # help viewer
-    pkgs.gnome.geary # email client
-    pkgs.gnome.totem
-    pkgs.gnome.simple-scan
-    pkgs.gnome.gnome-characters
-    pkgs.gnome.gnome-calculator
-    pkgs.gnome.gnome-contacts
-    pkgs.gnome.gnome-logs
-    pkgs.gnome.gnome-maps
-    pkgs.gnome.gnome-music
-    pkgs.gnome.gnome-screenshot
-    pkgs.gnome.gnome-system-monitor
+    pkgs.geary #email client
+    pkgs.totem
+    pkgs.simple-scan
+    pkgs.gnome-characters
+    pkgs.gnome-calculator
+    pkgs.gnome-contacts
+    pkgs.gnome-logs
+    pkgs.gnome-maps
+    pkgs.gnome-music
+    pkgs.gnome-screenshot
+    pkgs.gnome-system-monitor
     pkgs.gnome-text-editor
     pkgs.gnome-connections
     pkgs.gnome-console

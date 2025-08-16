@@ -7,14 +7,14 @@
   # Enable OpenGL
   # Most of it is gotten from here: https://nixos.wiki/wiki/Accelerated_Video_Playback
   # I experienced issues in brave browser, with stuttering. 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD
       intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       libvdpau-va-gl
-    ];   driSupport32Bit = true;
+    ];   
+    enable32Bit = true;
   };
   environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
   nixpkgs.config.packageOverrides = pkgs: {
