@@ -40,12 +40,12 @@
 
   fonts = {
     enableDefaultPackages = true;
-    packages = with pkgs; [
-      nerdfonts
-      # or install specific fonts:
-      pkgs.nerd-fonts._0xproto
-      pkgs.nerd-fonts.droid-sans-mono
-    ];
+    # packages = with pkgs; [
+    #   nerdfonts
+    #   # or install specific fonts:
+    #   pkgs.nerd-fonts._0xproto
+    #   pkgs.nerd-fonts.droid-sans-mono
+    # ];
   };
   
   # Configure keymap in X11
@@ -127,7 +127,7 @@
   users.users.robbingdahood = {
     isNormalUser = true;
     description = "Daniel";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   # Enable automatic login for the user.
@@ -159,15 +159,16 @@
         (chromium.override { enableWideVine = true; })
         tintin
         nushell
+        nettools #Ifconfig and the likes
   ];
   
   # Stream gaming from machine
-  # services.sunshine = {
-  #   enable = true;
-  #   autoStart = true;
-  #   capSysAdmin = true;
-  #   openFirewall = true;
-  # };
+  services.sunshine = {
+    enable = true;
+    autoStart = false;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   # Chromium native wayland support: https://nixos.wiki/wiki/Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -215,6 +216,11 @@
 
   # https://nixos.wiki/wiki/Gamemode
   programs.gamemode.enable = true;
+
+  #Docker
+  virtualisation.docker = {
+    enable = true;
+  };
 
   # https://nixos.wiki/wiki/Bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
