@@ -10,5 +10,9 @@ args = [ "-l", "-c tmux attach || tmux" ]
 [font]
 size = 13
 
+[font.normal]
+family = "DroidSansM Nerd Font"
+style = "Regular"
+
 [colors]
 draw_bold_text_with_bright_colors = false

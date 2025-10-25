@@ -39,13 +39,10 @@
   };
 
   fonts = {
-    enableDefaultPackages = true;
-    # packages = with pkgs; [
-    #   nerdfonts
-    #   # or install specific fonts:
-    #   pkgs.nerd-fonts._0xproto
-    #   pkgs.nerd-fonts.droid-sans-mono
-    # ];
+    # enableDefaultPackages = true;
+    packages = with pkgs; [
+      nerd-fonts.droid-sans-mono
+    ];
   };
   
   # Configure keymap in X11
@@ -178,6 +175,11 @@
       shell = pkgs.fish;
   };
 
+  programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+  };
+
   # Also read https://nixos.wiki/wiki/GNOME  
   environment.gnome.excludePackages = [ 
     pkgs.gnome-tour 
@@ -201,6 +203,7 @@
     pkgs.gnome-console
     pkgs.xterm
     pkgs.lazygit
+    pkgs.gcc
   ];
     
   programs.steam = {
