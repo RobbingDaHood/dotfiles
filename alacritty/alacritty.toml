@@ -1,8 +1,9 @@
+[general]
 import = [
     "~/.config/alacritty/themes/themes/github_dark_high_contrast.toml"
 ]
 
-[shell]
+[terminal.shell]
 program = "fish"
 args = [ "-l", "-c tmux attach || tmux" ]
 
