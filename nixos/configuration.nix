@@ -157,6 +157,12 @@
         tintin
         nushell
         nettools #Ifconfig and the likes
+        gcc
+        nodejs
+        lazygit
+        fzf
+        ripgrep
+        fd
   ];
   
   # Stream gaming from machine
@@ -202,8 +208,6 @@
     pkgs.gnome-connections
     pkgs.gnome-console
     pkgs.xterm
-    pkgs.lazygit
-    pkgs.gcc
   ];
     
   programs.steam = {
