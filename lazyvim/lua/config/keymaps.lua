@@ -14,3 +14,5 @@ end, { desc = "Terminal (Root Dir, Left)" })
 vim.keymap.set("n", "<leader>yn", function()
   require("config.codepointer_to_nearest_method").yank()
 end, { desc = "Yank codepointer to nearest method" })
+
+require("config.codepointer_go_to_path")
