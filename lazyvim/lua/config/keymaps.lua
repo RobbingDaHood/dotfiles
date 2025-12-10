@@ -10,3 +10,7 @@ vim.keymap.set("n", "<leader>ft", function()
   vim.cmd("wincmd H") -- Move the terminal split to the far left
   vim.cmd("vertical resize " .. width) -- Explicitly set the width
 end, { desc = "Terminal (Root Dir, Left)" })
+
+vim.keymap.set("n", "<leader>yn", function()
+  require("config.codepointer_to_nearest_method").yank()
+end, { desc = "Yank codepointer to nearest method" })
