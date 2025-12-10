@@ -2,6 +2,12 @@
 -- path_from_root_of_project/file_name.py::class_name::method_name
 -- path_from_root_of_project/file_name.py::method_name
 -- path_from_root_of_project/file_name.py:line_number
+
+local function file_exists(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == "file"
+end
+
 local function goto_pointer(ptr)
   if not ptr or ptr == "" then
     print("Empty pointer")
@@ -14,9 +20,14 @@ local function goto_pointer(ptr)
   if not file then
     file, rest = ptr:match("^(.-)::(.+)$")
   end
+  if not file then
+    -- Assume it is a file path
+    file = ptr
+  end
 
-  if not (file and rest) then
-    print("✗ Invalid pointer format. Use file::symbol or file:line")
+  -- Check file exists before editing**
+  if not file_exists(file) then
+    print("✗ File does not exist: " .. file)
     return
   end
 
@@ -24,6 +35,11 @@ local function goto_pointer(ptr)
   local ok, err = pcall(vim.cmd, "edit " .. file)
   if not ok then
     print("✗ Could not open file: " .. (err or "unknown error"))
+    return
+  end
+
+  if not rest then
+    -- Assume it were just a file path.
     return
   end
 
