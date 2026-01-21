@@ -9,6 +9,42 @@ return {
       -- This is currently being ignored, putting it here in case it gets fixed at some point.
       position = "left",
     },
+    functions = {
+      pr_diff = {
+        description = "Add PR diff between current branch and development to the scope.",
+        uri = "pr_diff:{pr_id}",
+        schema = {
+          type = "object",
+          required = { "pr_id" },
+          properties = {
+            pr_id = {
+              type = "string",
+              description = "The last part of the github pr ur. Example: Owner/Repo/pull/Id",
+            },
+          },
+        },
+        resolve = function(input)
+          local owner, repo, pull, id = input.pr_id:match("([^/]+)/([^/]+)/([^/]+)/([^/]+)")
+          local utils = require("CopilotChat.utils")
+          local cmd = {
+            "gh",
+            "pr",
+            "diff",
+            "--repo",
+            owner .. "/" .. repo,
+            id,
+          }
+          local out = utils.system(cmd)
+          return {
+            {
+              uri = "pr_diff:" .. input.pr_id,
+              mimetype = "text/plain",
+              data = out.stdout,
+            },
+          }
+        end,
+      },
+    },
     prompts = {
       ReviewAllChanges = {
         name = "Summarize Git Diff and Suggest Improvements",
