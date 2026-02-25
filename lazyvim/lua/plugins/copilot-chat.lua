@@ -4,6 +4,7 @@ return {
     -- Use copilot built-in selection logic
     selection = "#selection",
     auto_insert_mode = false, -- That results in navigating suddenly writing.
+    history_path = vim.fn.stdpath("data") .. "/copilotchat_history",
     window = {
       width = 0.3,
       -- This is currently being ignored, putting it here in case it gets fixed at some point.
