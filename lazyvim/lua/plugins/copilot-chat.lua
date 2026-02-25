@@ -1,8 +1,8 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   opts = {
-    -- Use copilot built-in selection logic
-    selection = "#selection",
+    -- Do not default to some selection.
+    -- selection = "#selection",
     auto_insert_mode = false, -- That results in navigating suddenly writing.
     history_path = vim.fn.stdpath("data") .. "/copilotchat_history",
     window = {
@@ -53,7 +53,7 @@ return {
         prompt = [[
         @copilot git diff development...
 
-    Analyze the latest changes between the current branch and 'development'.
+    Analyze all the changes between the current branch and 'development'.
     Write a short summary of the changes and list possible improvements.
     Do not include the raw diff in your response.
     Tell me if there are added some TODOs in the diff. 
